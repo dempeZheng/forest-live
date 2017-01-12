@@ -17,7 +17,20 @@
         <java.version>1.6</java.version>
         <scala.version>2.11.1</scala.version>
         <scala.binary.version>2.11</scala.binary.version>
-        <log4j.version>1.2.17</log4j.version>
+        <java.source.jdk>1.7</java.source.jdk>
+        <spring.version>4.2.5.RELEASE</spring.version>
+        <snappy-java.version>1.1.1.6</snappy-java.version>
+        <org.slf4j.version>1.7.5</org.slf4j.version>
+        <apache.curator.version>2.7.1</apache.curator.version>
+        <esotericsoftware.kryo.version>2.24.0</esotericsoftware.kryo.version>
+        <caucho.hession.version>4.0.38</caucho.hession.version>
+        <google.guava.version>17.0</google.guava.version>
+        <commons-pool2.version>2.2</commons-pool2.version>
+        <alibaba.fastjson.version>1.1.36</alibaba.fastjson.version>
+        <logback-classic.version>1.0.13</logback-classic.version>
+        <log4j.version>1.2.16</log4j.version>
+        <commons-lang3.version>3.1</commons-lang3.version>
+        <jersey.version>1.19</jersey.version>
     </properties>
 
     <dependencies>
@@ -64,23 +77,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.1.41</version>
-        </dependency>
-        <!--<dependency>-->
-        <!--<groupId>com.typesafe.akka</groupId>-->
-        <!--<artifactId>akka-stream-experimental_2.11</artifactId>-->
-        <!--<version>0.4</version>-->
-        <!--</dependency>-->
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-jdk14</artifactId>
             <version>1.7.7</version>
@@ -91,17 +87,29 @@
             <version>1.2.9</version>
         </dependency>
 
-        <!--Duration MailBox dependency-->
-        <!--<dependency>-->
-        <!--<groupId>se.scalablesolutions.akka</groupId>-->
-        <!--<artifactId>akka-mailboxes-common</artifactId>-->
-        <!--<version>2.0</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>se.scalablesolutions.akka</groupId>-->
-        <!--<artifactId>akka-file-mailbox</artifactId>-->
-        <!--<version>2.0</version>-->
-        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.5</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -199,7 +207,6 @@
             </plugin>
         </plugins>
     </build>
-
 
 
 </project>

@@ -1,7 +1,7 @@
 package com.zhizus.forest.live.service
 
 import akka.actor.{ActorSelection, ActorSystem, Props}
-import com.zhizus.forest.live.common.codec.{Header, Payload, Response}
+import com.zhizus.forest.live.common.codec.{Header, Payload, Request, Response}
 
 /**
   * Created by Dempe on 2017/1/12.
@@ -12,9 +12,8 @@ object ServiceApp extends App {
   val busActorPath = "akka.tcp://busApp@127.0.0.1:3552/user/busActor";
   private val busActor: ActorSelection = system.actorSelection(busActorPath)
   system.actorOf(Props(new AbstractServiceActor(busActor) {
-    override def route(uri: String): Response = {
-      println(">>>>>>>" + uri)
-      makeDefRsp()
+    override def execute(uri: Any, req: Request): Unit = {
+      busActor ! makeDefRsp();
     }
   }), name = "serviceDemoActor")
 
