@@ -23,6 +23,7 @@ class BusActor(actorSystem: ActorSystem) extends Actor with ActorLogging {
       // todo 负载均衡
       val selection: ActorSelection = actorSystem.actorSelection(path)
 
+      log.info("selection Actor path : {} actor : {}", path, selection)
       // 透传消息到子进程
       selection ! req;
 
@@ -40,7 +41,8 @@ class BusActor(actorSystem: ActorSystem) extends Actor with ActorLogging {
   }
 
   def buildPath(request: Request): String = {
-    Constants.actorPath + select(request) + "/user/" + request.header.service
+    val service: Int = request.header.service
+    Constants.actorPath + select(request) + "/user/" + "serviceDemoActor"
   }
 
   def select(request: Request): String = {

@@ -9,6 +9,7 @@ import com.zhizus.forest.live.common.codec.{Request, Response}
 abstract class AbstractServiceActor(busActor: ActorSelection) extends Actor with ActorLogging {
   override def receive: Receive = {
     case req: Request => {
+      log.info("service req:{}", req)
       val uri: String = req.payload.uri
       busActor ! route(uri)
     }
