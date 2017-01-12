@@ -1,4 +1,4 @@
-package com.zhizus.forest.live.bus
+package com.zhizus.forest.live.publish
 
 /**
   * Created by Dempe on 2017/1/11 0011.
@@ -7,9 +7,8 @@ package com.zhizus.forest.live.bus
 import akka.actor.ActorRef
 import akka.event.EventBus
 import akka.event.LookupClassification
-import com.zhizus.forest.live.common.codec.Response
 
-case class MsgEnvelope(topic: String, payload: Response)
+case class MsgEnvelope(topic: String, payload: Any)
 
 /**
   * Publishes the payload of the MsgEnvelope when the topic of the
