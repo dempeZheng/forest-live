@@ -24,6 +24,16 @@ public class ServiceRouter implements IRouter {
 
     public ServiceRouter(ApplicationContext context) {
         this.context = context;
+        init();
+    }
+
+
+    public void init() {
+        for (String beanName : context.getBeanNamesForAnnotation(URIMapping.class)) {
+            Object bean = context.getBean(beanName);
+            // init router
+            init(bean);
+        }
     }
 
     public void init(Object bean) {
