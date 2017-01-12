@@ -2,18 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>forest-live</artifactId>
+        <groupId>com.zhizus</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zhizus</groupId>
-    <artifactId>forest-live</artifactId>
+    <artifactId>live-plugin</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>live-bus</module>
-        <module>live-publish</module>
-        <module>live-common</module>
-        <module>live-service</module>
-        <module>live-plugin</module>
+        <module>live-service-base</module>
+        <module>live-service-chat</module>
+        <module>live-service-gift</module>
     </modules>
 
 
