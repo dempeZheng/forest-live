@@ -15,10 +15,6 @@ object Demo extends App {
   private val publishActor: ActorRef = system.actorOf(Props[PublishActor], "publishActorTest")
   publishActor ! "hello msg"
 
-  val lookupBus = new LookupBusImpl
-  lookupBus.subscribe(testActor, "greetings")
-  lookupBus.publish(MsgEnvelope("time", System.currentTimeMillis()))
-  lookupBus.publish(MsgEnvelope("greetings", "hello"))
-  expectMsg("hello")
+
 
 }

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>live-bus</artifactId>
+    <artifactId>live-service</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -199,5 +199,7 @@
             </plugin>
         </plugins>
     </build>
+
+
 
 </project>

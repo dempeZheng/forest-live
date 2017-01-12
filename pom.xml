@@ -12,6 +12,7 @@
         <module>live-bus</module>
         <module>live-publish</module>
         <module>live-common</module>
+        <module>live-service</module>
     </modules>
 
 

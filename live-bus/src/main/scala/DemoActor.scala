@@ -4,7 +4,7 @@ import com.zhizus.forest.live.bus.{SubchannelBusImpl, LookupBusImpl, MsgEnvelope
 /**
   * Created by Dempe on 2017/1/11 0011.
   */
-class BusActor extends Actor with ActorLogging {
+class DemoActor extends Actor with ActorLogging {
   override def receive: Receive = {
     case msg: String =>
       log.info("msg>>>{}", msg)
@@ -14,7 +14,7 @@ class BusActor extends Actor with ActorLogging {
 object Demo extends App {
 
   private val system: ActorSystem = ActorSystem("demo")
-  private val busActor: ActorRef = system.actorOf(Props[BusActor], "busActor")
+  private val busActor: ActorRef = system.actorOf(Props[DemoActor], "busActor")
   val lookupBus = new LookupBusImpl
   lookupBus.subscribe(busActor, "greetings")
   lookupBus.publish(MsgEnvelope("time", System.currentTimeMillis()))
