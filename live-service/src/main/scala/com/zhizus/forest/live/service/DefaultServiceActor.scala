@@ -1,8 +1,8 @@
 package com.zhizus.forest.live.service
 
 import akka.actor.ActorSelection
-import com.forest.zhizus.live.service.processor.ServiceProcessor
 import com.zhizus.forest.live.common.codec.Request
+import com.zhizus.forest.live.service.processor.ServiceProcessor
 import org.springframework.context.support.ClassPathXmlApplicationContext
 
 /**
@@ -10,11 +10,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext
   */
 class DefaultServiceActor(actorSelection: ActorSelection) extends AbstractServiceActor(actorSelection: ActorSelection) {
 
-  private val context: ClassPathXmlApplicationContext = new ClassPathXmlApplicationContext("spring-context.xml")
+  val springContext: ClassPathXmlApplicationContext = new ClassPathXmlApplicationContext("spring-context.xml")
 
-  private val processor: ServiceProcessor = new ServiceProcessor(context, actorSelection)
+  private val processor: ServiceProcessor = new ServiceProcessor(springContext, actorSelection)
 
-  override def execute(uri: Any, req: Request): Unit = {
+  override def execute(uri: String, req: Request): Unit = {
     processor.execute(uri, req)
   }
 }

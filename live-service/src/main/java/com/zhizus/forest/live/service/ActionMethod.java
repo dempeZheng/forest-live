@@ -1,7 +1,7 @@
-package com.forest.zhizus.live.service;
+package com.zhizus.forest.live.service;
 
-import com.forest.zhizus.live.service.interceptor.ChainInvokerInterceptor;
-import com.forest.zhizus.live.service.interceptor.InvokerInterceptor;
+import com.zhizus.forest.live.service.interceptor.ChainInvokerInterceptor;
+import com.zhizus.forest.live.service.interceptor.InvokerInterceptor;
 import com.google.common.util.concurrent.RateLimiter;
 
 import java.lang.reflect.InvocationTargetException;

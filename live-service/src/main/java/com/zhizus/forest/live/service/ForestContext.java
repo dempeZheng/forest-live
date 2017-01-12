@@ -1,4 +1,4 @@
-package com.forest.zhizus.live.service;
+package com.zhizus.forest.live.service;
 
 import com.google.common.collect.Maps;
 import com.zhizus.forest.live.common.codec.Request;

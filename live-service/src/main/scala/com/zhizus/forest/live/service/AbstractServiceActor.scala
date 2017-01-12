@@ -7,6 +7,7 @@ import com.zhizus.forest.live.common.codec.Request
   * Created by Dempe on 2017/1/12.
   */
 abstract class AbstractServiceActor(busActor: ActorSelection) extends Actor with ActorLogging {
+  // 根据uri自动路由到具体方法，由框架统一调用封装返回，避免业务使用者阻塞actor
   override def receive: Receive = {
     case req: Request => {
       log.info("service req:{}", req)
@@ -15,5 +16,5 @@ abstract class AbstractServiceActor(busActor: ActorSelection) extends Actor with
     }
   }
 
-  def execute(uri: Any, req: Request);
+  def execute(uri: String, req: Request);
 }

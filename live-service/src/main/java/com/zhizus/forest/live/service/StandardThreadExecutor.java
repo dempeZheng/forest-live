@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.forest.zhizus.live.service;
+package com.zhizus.forest.live.service;
 
 
 import java.util.concurrent.*;

@@ -1,6 +1,7 @@
 package com.zhizus.forest.live.bus
 
 import akka.actor.{ActorSelection, ActorSystem}
+import com.alibaba.fastjson.JSONObject
 import com.typesafe.config.ConfigFactory
 import com.zhizus.forest.live.common.codec.{Header, Payload, Request}
 
@@ -19,7 +20,9 @@ object ClientSimulator extends App {
 
 
   def makeDefReq(): Request = {
-    new Request(new Header(1, 1, 5555, 6666, 7777, 1, 1, 1, 0), new Payload("", new Array[Byte](0)))
+    val json: JSONObject = new JSONObject()
+    json.put("name", "akka service")
+    new Request(new Header(1, 1, 5555, 6666, 7777, 1, 1, 1, 0), new Payload("demo/hello", json.toJSONString.getBytes))
   }
 
 }

@@ -1,4 +1,4 @@
-package com.forest.zhizus.live.service;
+package com.zhizus.forest.live.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Strings;

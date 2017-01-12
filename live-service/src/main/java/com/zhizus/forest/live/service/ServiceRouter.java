@@ -1,9 +1,9 @@
-package com.forest.zhizus.live.service;
+package com.zhizus.forest.live.service;
 
-import com.forest.zhizus.live.service.interceptor.InvokerInterceptor;
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.RateLimiter;
+import com.zhizus.forest.live.service.interceptor.InvokerInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +18,7 @@ public class ServiceRouter implements IRouter {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(ServiceRouter.class);
 
-    private Map<Object, ActionMethod> routerMapping = Maps.newConcurrentMap();
+    private Map<String, ActionMethod> routerMapping = Maps.newConcurrentMap();
 
     private ApplicationContext context;
 
@@ -29,22 +29,26 @@ public class ServiceRouter implements IRouter {
 
 
     public void init() {
-        for (String beanName : context.getBeanNamesForAnnotation(URIMapping.class)) {
+        for (String beanName : context.getBeanNamesForAnnotation(ServiceMapping.class)) {
             Object bean = context.getBean(beanName);
+            ServiceMapping serviceMapping = bean.getClass().getAnnotation(ServiceMapping.class);
+            String service = Strings.isNullOrEmpty(serviceMapping.service()) ? bean.getClass().getSimpleName() : serviceMapping.service();
             // init router
-            init(bean);
+            init(service, bean);
         }
     }
 
-    public void init(Object bean) {
+    public void init(String service, Object bean) {
         for (Method method : bean.getClass().getMethods()) {
-            URIMapping methodExport = method.getAnnotation(URIMapping.class);
-            if (methodExport == null) {
+            Path pathAnnotation = method.getAnnotation(Path.class);
+            if (pathAnnotation == null) {
                 continue;
             }
+            String path = Strings.isNullOrEmpty(pathAnnotation.value()) ? method.getName() : pathAnnotation.value();
             ActionMethod actionMethod = new ActionMethod(bean, method);
-            routerMapping.put(methodExport.uri(), actionMethod);
 
+            String uri = service + "/" + path;
+            routerMapping.put(uri, actionMethod);
             initInterceptor(actionMethod, context);
             initRate(actionMethod);
         }
@@ -91,7 +95,7 @@ public class ServiceRouter implements IRouter {
     }
 
     @Override
-    public ActionMethod router(Object uri) {
+    public ActionMethod router(String uri) {
         return routerMapping.get(uri);
     }
 }

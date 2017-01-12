@@ -1,4 +1,4 @@
-package com.forest.zhizus.live.service;
+package com.zhizus.forest.live.service;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,12 +1,12 @@
-package com.forest.zhizus.live.service.processor;
+package com.zhizus.forest.live.service.processor;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSelection;
 import com.alibaba.fastjson.JSONObject;
-import com.forest.zhizus.live.service.*;
 import com.zhizus.forest.live.common.codec.Payload;
 import com.zhizus.forest.live.common.codec.Request;
 import com.zhizus.forest.live.common.codec.Response;
+import com.zhizus.forest.live.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -29,7 +29,7 @@ public class ServiceProcessor {
         router = new ServiceRouter(context);
     }
 
-    public void execute(Object uri, Request request) {
+    public void execute(String uri, Request request) {
         ActionMethod actionMethod = this.router.router(uri);
         executor.execute(new InvokerRunnable(actionMethod, request, actorSelection));
     }
