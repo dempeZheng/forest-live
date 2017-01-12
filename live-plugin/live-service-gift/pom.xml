@@ -11,5 +11,13 @@
 
     <artifactId>live-service-gift</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.zhizus</groupId>
+            <artifactId>live-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 
 </project>
