@@ -1,6 +1,6 @@
 package com.zhizus.forest.live.service
 
-import akka.actor.{ActorSelection, ActorSystem, Props}
+import akka.actor.{ActorSystem, Props}
 
 /**
   * Created by Dempe on 2017/1/12.
@@ -8,8 +8,6 @@ import akka.actor.{ActorSelection, ActorSystem, Props}
 object ServiceApp extends App {
 
   private val system: ActorSystem = ActorSystem("serviceApp")
-  val busActorPath = "akka.tcp://busApp@127.0.0.1:3552/user/busActor";
-  private val busActor: ActorSelection = system.actorSelection(busActorPath)
-  system.actorOf(Props(new DefaultServiceActor(busActor)), name = "serviceDemoActor")
+  system.actorOf(Props(new DefaultServiceActor()), name = "serviceDemoActor")
 
 }

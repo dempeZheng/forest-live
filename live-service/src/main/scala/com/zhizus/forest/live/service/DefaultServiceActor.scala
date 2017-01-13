@@ -8,13 +8,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext
 /**
   * Created by Dempe on 2017/1/12.
   */
-class DefaultServiceActor(actorSelection: ActorSelection) extends AbstractServiceActor(actorSelection: ActorSelection) {
+class DefaultServiceActor extends AbstractServiceActor {
 
-  val springContext: ClassPathXmlApplicationContext = new ClassPathXmlApplicationContext("spring-context.xml")
+  var processor: ServiceProcessor = null;
 
-  private val processor: ServiceProcessor = new ServiceProcessor(springContext, actorSelection)
+  @scala.throws[Exception](classOf[Exception])
+  override def preStart(): Unit = {
+    val springContext: ClassPathXmlApplicationContext = new ClassPathXmlApplicationContext("spring-context.xml")
+    processor = new ServiceProcessor(springContext)
+  }
 
-  override def execute(uri: String, req: Request): Unit = {
-    processor.execute(uri, req)
+  override def execute(uri: String, req: Request, selection: ActorSelection): Unit = {
+    processor.execute(uri, req, selection)
   }
 }

@@ -2,6 +2,7 @@ package com.zhizus.forest.live.service.processor;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSelection;
+import akka.actor.ActorSystem;
 import com.alibaba.fastjson.JSONObject;
 import com.zhizus.forest.live.common.codec.Payload;
 import com.zhizus.forest.live.common.codec.Request;
@@ -20,18 +21,16 @@ public class ServiceProcessor {
 
     private static Executor executor = new StandardThreadExecutor();
 
-    private ActorSelection actorSelection;
 
     private ServiceRouter router;
 
-    public ServiceProcessor(ApplicationContext context, ActorSelection actorSelection) {
-        this.actorSelection = actorSelection;
+    public ServiceProcessor(ApplicationContext context) {
         router = new ServiceRouter(context);
     }
 
-    public void execute(String uri, Request request) {
+    public void execute(String uri, Request request, ActorSelection actorSelection) {
         ActionMethod actionMethod = this.router.router(uri);
-        executor.execute(new InvokerRunnable(actionMethod, request, actorSelection));
+        executor.execute(new InvokerRunnable(actionMethod, request,actorSelection));
     }
 
 }
