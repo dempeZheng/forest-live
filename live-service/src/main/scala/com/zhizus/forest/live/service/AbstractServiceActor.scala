@@ -12,8 +12,8 @@ abstract class AbstractServiceActor extends Actor with ActorLogging {
     case req: Request => {
       log.info("service req:{}", req)
       val uri: String = req.payload.uri
-      val selection: ActorSelection = context.actorSelection("akka.tcp://busApp@127.0.0.1:3552/user/busActor")
-      execute(uri, req, selection)
+      // 异步将处理消息，并将返回写过发送给busActor
+      execute(uri, req, context.actorSelection("akka.tcp://busApp@127.0.0.1:3552/user/busActor"))
     }
   }
 
